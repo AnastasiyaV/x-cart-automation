@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="200517 First Project" />
+        <module name="x-cart-automation" />
+        <module name="x-cart-testing" />
       </profile>
     </annotationProcessing>
   </component>
