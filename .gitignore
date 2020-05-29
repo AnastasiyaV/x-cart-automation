@@ -1,3 +1,15 @@
 target
 *.iml
 .idea
+.OldProjects/
+# ../OldProjects/.DS_Store
+# ../OldProjects/SeleniumPractice01/.DS_Store
+# ../OldProjects/SeleniumPractice01/.idea/compiler.xml
+# ../OldProjects/SeleniumPractice01/.idea/libraries/
+# ../OldProjects/SeleniumPractice01/.idea/misc.xml
+# ../OldProjects/SeleniumPractice01/.idea/modules.xml
+# ../OldProjects/SeleniumPractice01/.idea/uiDesigner.xml
+# ../OldProjects/SeleniumPractice01/.idea/vcs.xml
+# ../OldProjects/SeleniumPractice01/SeleniumPractice01.iml
+# ../OldProjects/SeleniumPractice01/pom.xml
+# ../OldProjects/SeleniumPractice01/src/

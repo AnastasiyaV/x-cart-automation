@@ -1,29 +1,35 @@
 package google;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class GoogleTest {
-    private WebDriver driver;
 
-    @BeforeTest
-    public void setDriver() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\chromedriver.exe");
-        driver = new ChromeDriver();
-    }
 
-    @AfterTest
-    public void tearDown() {
-        driver.quit();
-    }
+ //   @Test
+//    public void googleTest() {
+//        driver.get("https://www.google.com");
+//        String title = driver.getTitle();
+//        System.out.println(title);
+//    }
+
+
 
     @Test
-    public void googleTest() {
-        driver.get("https://www.google.com");
-        String title = driver.getTitle();
-        System.out.println(title);
+    public void getContacts() {
+
     }
+    @Test
+    public void clickContacts() {
+
+    }
+
 }
