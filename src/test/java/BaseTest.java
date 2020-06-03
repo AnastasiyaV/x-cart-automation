@@ -9,7 +9,7 @@ import pageobjects.HomePageObject;
 import java.util.concurrent.TimeUnit;
 
 abstract class BaseTest {
-    public WebDriver driver;//?why static?
+    public WebDriver driver;
     public String baseUrl = "https://trial.x-cart.com/nazarkraniagmailcom/";
     protected HomePageObject homePage;
 
@@ -19,7 +19,6 @@ abstract class BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         homePage = new HomePageObject(driver);
-
     }
     @BeforeClass
     public void navigateToHomePage() {
@@ -32,5 +31,4 @@ abstract class BaseTest {
     public void tearDown() {
         driver.quit();
     }
-
 }
