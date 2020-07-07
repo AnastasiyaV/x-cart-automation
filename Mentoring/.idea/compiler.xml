@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="x-cart-testing" target="1.5" />
+      <module name="x-cart-testing" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
