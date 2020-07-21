@@ -1,36 +1,37 @@
 package firstTests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageobjects.TopLinkSelector;
-
+import org.apache.log4j.Logger;
 
 public class HomePageTest extends BaseTest {
+private static final Logger logger = Logger.getLogger(HomePageTest.class.getName());
 
-    @Test
+
+    @Test (priority = 2, description = "Verify that Clicking New Will Open NewArr Page")
     public void verifyClickingNewWillOpenNewArrPage (){
-        homePage.linksNavbarModule.click(TopLinkSelector.NEW);
-        Assert.assertEquals(driver.getCurrentUrl().contains(TopLinkSelector.NEW.getCssSelectorSuffix()),true);
-    }
-    @Test
-    //@Description(value = "Тест кликает на Shipping в хеддере и проверяет, что юзер перешел на URL /shipping")
-    //как поссмотреть содержание метода getCurrentUrl
-    public void verifyClickingShippingWillOpenShippingPage (){
-        homePage.linksNavbarModule.click(TopLinkSelector.SHIPPING);
-        Assert.assertEquals(driver.getCurrentUrl().contains(TopLinkSelector.SHIPPING.getCssSelectorSuffix()),true);
-    }
-    //TODO: data provider  - to do one test for all links
-    //@Test(dataProvider=”cross-browser-testing”)// атрибут задает поставщика данных
-    /*@DataProvider(name = "LINKS", parallel = true) //
-    protected Object[][] urlActionDataProviderForLinks(final ITestContext context) {
-        return BaseDataProvider.getDataProviderFromEnum(Link.values(), context);
+        homePage.getLinksNavbarModule().click(TopLinkSelector.NEW);
+        Assert.assertEquals(driver.getCurrentUrl().contains(TopLinkSelector.NEW.getCssSelectorSuffix()), true);
     }
 
-    @Test(dataProvider = "LINK", retryAnalyzer = BaseTestRetryAnalyzer.class,
-            description = "Webpage Links Test")
-    public void testLinksOnPage(Link keyword) {
-        driver.get('http://example.com');
-        keyword.click;
-        assertNonEmpty(keyword.getLinkText());
-    }*/
+    @Test(dataProvider="getTopUrl", priority = 1, description = "Verify that Clicking TopUrl Instance Will Open Expected Page")
+    @Feature("Feature1: Top Url Module")
+    @Severity(SeverityLevel.NORMAL)
+    public void verifyClickingTopUrlInstanceWillOpenExpectedPage(TopLinkSelector topLinkSelector) {
+        homePage.getLinksNavbarModule().click(topLinkSelector);
+        logger.info("Verify that CurrentUrl same as expected in the Top Navbar Menu");
+        if (!topLinkSelector. equals(TopLinkSelector.HOME)) {
+            Assert.assertEquals(driver.getCurrentUrl().contains(topLinkSelector.getCssSelectorSuffix()), true);
+        }else if (topLinkSelector.equals(TopLinkSelector.HOME)) {
+            Assert.assertEquals(driver.getCurrentUrl().contains("https://cloud.x-cart.com/nazarkraniagmailcom/"), true);
+        }
+    }
+    @DataProvider (name = "getTopUrl")//read about "parallel = true"
+    public Object[] getTopUrl() {
+        return new Object[] {TopLinkSelector.NEW, TopLinkSelector.SHIPPING, TopLinkSelector.COMMINGSOON, TopLinkSelector.CONTACTUS, TopLinkSelector.HOME};
+    }
 }
