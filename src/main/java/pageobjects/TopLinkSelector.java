@@ -22,4 +22,6 @@ public enum TopLinkSelector {
     public String getCssSelectorSuffix(){
         return this.url;
     }
+
+
 }

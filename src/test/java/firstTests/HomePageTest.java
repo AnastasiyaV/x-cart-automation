@@ -5,6 +5,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pageobjects.SignInSelector;
 import pageobjects.TopLinkSelector;
 import org.apache.log4j.Logger;
 
@@ -34,4 +35,11 @@ private static final Logger logger = Logger.getLogger(HomePageTest.class.getName
     public Object[] getTopUrl() {
         return new Object[] {TopLinkSelector.NEW, TopLinkSelector.SHIPPING, TopLinkSelector.COMMINGSOON, TopLinkSelector.CONTACTUS, TopLinkSelector.HOME};
     }
+
+    @Test (priority = 2, description = "Verify that clicking HeaderBarSignIn will open SignIn dialog")
+    public void verifyClickingHeaderBarSignInWillOpenSignInDialog (){
+        homePage.getSignInModule().click(signInSelector);
+        //how to assert that id="ui-id-9" is opened? assert that .gettext  = "Sign in"?
+    }
+
 }
