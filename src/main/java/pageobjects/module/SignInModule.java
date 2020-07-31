@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageobjects.SignInSelector;
 import pageobjects.TopLinkSelector;
-
+@Deprecated
 public class SignInModule {
     public WebDriver driver;
     private static final Logger logger = Logger.getLogger(SignInModule.class.getName());
@@ -13,9 +13,6 @@ public class SignInModule {
         this.driver = driver;
     }
 
-    public void click (SignInSelector signInSelector) {
-        logger.info("Clicking on signInSelector " + signInSelector.getHeaderBarSignIn());
-        driver.findElement(By.cssSelector(signInSelector.getHeaderBarSignIn())).click();
-    }
+
 
 }

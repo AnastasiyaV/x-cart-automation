@@ -2,7 +2,7 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+@Deprecated
 public class SignInSelector extends BasePageObject {
     public SignInSelector(WebDriver driver) {
         super(driver);
@@ -10,9 +10,9 @@ public class SignInSelector extends BasePageObject {
 
     public SignInSelector signInSelector;  //why do i need this variable here? :-/
 
-    private By headerBarSignIn = By.className("header_bar-sign_in");
+    private By headerBarSignIn = By.className("header_bar-sign_in button");
 
-    public WebElement getHeaderBarSignIn(WebElement member) {
+    public WebElement getHeaderBarSignIn(WebElement element) {
         return driver.findElement(headerBarSignIn);
     }
 

@@ -38,7 +38,6 @@ private static final Logger logger = Logger.getLogger(HomePageTest.class.getName
 
     @Test (priority = 2, description = "Verify that clicking HeaderBarSignIn will open SignIn dialog")
     public void verifyClickingHeaderBarSignInWillOpenSignInDialog (){
-        homePage.getSignInModule().click(signInSelector);
         //how to assert that id="ui-id-9" is opened? assert that .gettext  = "Sign in"?
     }
 
