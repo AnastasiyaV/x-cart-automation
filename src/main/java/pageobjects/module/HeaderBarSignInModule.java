@@ -5,44 +5,110 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SignInDialogModule {
-    public WebDriver driver;
-    private static final Logger logger = Logger.getLogger(SignInDialogModule.class.getName());
+public class HeaderBarSignInModule {
+    private WebDriver driver;
+    private static final Logger logger = Logger.getLogger(HeaderBarSignInModule.class.getName());
+    private InnerSignInModule innerSignInModule;
+    private InnerSignUpModule innerSignUpModule;
 
-
-    public SignInDialogModule(WebDriver driver) {
+    public HeaderBarSignInModule(WebDriver driver) {
         this.driver = driver;
     }
+
+    public void openSignUpForm(){} //add one more method perform signUp
+
+    public HeaderBarSignInModule performSignIn(String email, String password){
+        this.innerSignInModule = new InnerSignInModule(driver);
+        this.innerSignInModule.sendKeysSignInEmail(email);
+        this.innerSignInModule.sendKeysSignInPassword(password);
+        this.innerSignInModule.clickSignInSubmitButton();
+        return this;
+    }
+    public HeaderBarSignInModule performSignUp (String email, String password){
+        this.innerSignUpModule = new InnerSignUpModule(driver);
+        this.innerSignUpModule.sendKeysSignUpEmail(email);
+        this.innerSignUpModule.sendKeysSignUpPassword(password);
+        this.innerSignUpModule.clickSignUpCreateButton();
+        return this;
+    }
+
     class InnerSignInModule{
         public WebDriver driver;
-
-        private WebElement loginEmailTextFieldSelector;
-        private WebElement loginPasswordTextFieldSelector;
-        private WebElement submitButton;
-        private InnerSignInModule innerSignInModule; // how to put inside NEW InnerSignInModule object?
+        private WebElement signInEmailTextFieldSelector;
+        private WebElement signInPasswordTextFieldSelector;
+        private WebElement signInsubmitButtonSelector;
+        private WebElement signIncreateAccountLinkSelector;
+        private WebElement signInforgotPasswordSelector;
 
         public InnerSignInModule(WebDriver driver) {
             this.driver = driver;
-            this.loginEmailTextFieldSelector =  driver.findElement(By.id("login-email"));
-            this.loginPasswordTextFieldSelector =  driver.findElement(By.id("login-password"));
-            this.submitButton =  driver.findElement(By.className("btn  regular-button  submit"));
-        }
-        public InnerSignInModule getInnerSignInModule() {
-            return innerSignInModule;
+            this.signInEmailTextFieldSelector =  driver.findElement(By.id("login-email"));
+            this.signInPasswordTextFieldSelector =  driver.findElement(By.id("login-password"));
+            this.signInsubmitButtonSelector =  driver.findElement(By.cssSelector(".login-form .submit"));
+            this.signIncreateAccountLinkSelector =  driver.findElement(By.cssSelector(".popup-button default-popup-button create-account-link"));
+            this.signInforgotPasswordSelector =  driver.findElement(By.cssSelector("popup-button default-popup-button forgot"));
         }
 
-        public void sendKeysEmailAnastasiyaVynogradskaHotmailCom () {
-            logger.info("Entering anastasiya.vynogradska@hotmail.com to Email Text Field");
-            loginEmailTextFieldSelector.sendKeys("anastasiya.vynogradska@hotmail.com");
+        public void sendKeysSignInEmail (String email) {
+            logger.info("Entering SignIn Email Text Field");
+            signInEmailTextFieldSelector.sendKeys(email);
         }
-        public void sendKeysPasswordAnastasiyaVynogradskaHotmailCom () {
-            logger.info("Entering password '12345678' for anastasiya.vynogradska@hotmail.com to Password Text Field");
-            loginEmailTextFieldSelector.sendKeys("12345678");
+        public void sendKeysSignInPassword(String password) {
+            logger.info("Entering password to SignIn Password Text Field");
+            signInPasswordTextFieldSelector.sendKeys(password);
         }
-        public void clickSubmitButton () {
+        public void clickSignInSubmitButton () {
             logger.info("Clicking Sign in Button");
-            loginEmailTextFieldSelector.click();
+            signInsubmitButtonSelector.click();
+        }
+        public void clickSignInCreateAccountLink () {
+            logger.info("Clicking SignIn CreateNewAccountLink");
+            signIncreateAccountLinkSelector.click();
+        }
+        public void clickSignInForgotPasswordLink () {
+            logger.info("Clicking SignIn Forgot Password Link");
+            signInforgotPasswordSelector.click();
         }
 
     }
+
+    class InnerSignUpModule{
+        public WebDriver driver;
+        private WebElement signUpEmailTextFieldSelector;
+        private WebElement signUpPasswordTextFieldSelector;
+        private WebElement signUpConfirmPasswordTextFieldSelector;
+        private WebElement signUpCreateButtonSelector;
+        private WebElement signUpSignInLinkSelector;
+
+        public InnerSignUpModule(WebDriver driver) {
+            this.driver = driver;
+            this.signUpEmailTextFieldSelector =  driver.findElement(By.cssSelector(".input-text-email .login-label"));
+            this.signUpPasswordTextFieldSelector =  driver.findElement(By.cssSelector(".input-password .password-label"));
+            this.signUpConfirmPasswordTextFieldSelector =  driver.findElement(By.cssSelector(".input-password .password-conf-label"));
+            this.signUpCreateButtonSelector =  driver.findElement(By.cssSelector(".button .submit"));
+            this.signUpSignInLinkSelector =  driver.findElement(By.cssSelector(".sign-in"));
+        }
+        public void sendKeysSignUpEmail (String email) {
+            logger.info("Entering SignUp Email Text Field");
+            signUpEmailTextFieldSelector.sendKeys(email);
+        }
+        public void sendKeysSignUpPassword(String password) {
+            logger.info("Entering password to SignUp Password Text Field");
+            signUpPasswordTextFieldSelector.sendKeys(password);
+        }
+        public void sendKeysSignUpConfirmPassword(String password) {
+            logger.info("Entering password to SignUp Password Text Field");
+            signUpConfirmPasswordTextFieldSelector.sendKeys(password);
+        }
+        public void clickSignUpCreateButton () {
+            logger.info("Clicking Sign Up Create Button");
+            signUpCreateButtonSelector.click();
+        }
+        public void clickSignUpSignInLink () {
+            logger.info("Clicking Sign Up Sign in Link");
+            signUpSignInLinkSelector.click();
+        }
+
+    }
+
 }

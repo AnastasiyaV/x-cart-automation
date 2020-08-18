@@ -1,5 +1,6 @@
 package firstTests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 abstract class BaseTest {
     public WebDriver driver;
     public WebDriverWait wait;
-    public String baseUrl = "https://trial.x-cart.com/nazarkraniagmailcom/";
+    public String baseUrl = "https://bla.myxcartstore.com/"; //was https://trial.x-cart.com/nazarkraniagmailcom/
     protected HomePageObject homePage;
 
 
@@ -24,13 +25,11 @@ abstract class BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(baseUrl);
-
          /*try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-
         wait = new WebDriverWait(driver, 20);
         wait.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
         /*Boolean complete = wait.until(new ExpectedCondition<Boolean>() {
@@ -43,7 +42,6 @@ abstract class BaseTest {
 
         /*public static boolean isloadComplete(WebDriver driver)
         {*/
-
         homePage = new HomePageObject(driver);
     }
 
@@ -51,5 +49,4 @@ abstract class BaseTest {
     public void tearDown() {
         driver.quit();
     }
-
 }
