@@ -24,12 +24,24 @@ public class HeaderBarSignInModule {
         this.innerSignInModule.clickSignInSubmitButton();
         return this;
     }
-    public HeaderBarSignInModule performSignUp (String email, String password){
+    public HeaderBarSignInModule clickSignInCreateAccountLink (){
+        this.innerSignInModule = new InnerSignInModule(driver);
+        this.innerSignInModule.clickSignInCreateAccountLink();
+        return this;
+    }
+    public HeaderBarSignInModule performSignUp (String email, String password, String confirmPassword){
         this.innerSignUpModule = new InnerSignUpModule(driver);
         this.innerSignUpModule.sendKeysSignUpEmail(email);
         this.innerSignUpModule.sendKeysSignUpPassword(password);
+        this.innerSignUpModule.sendKeysSignUpConfirmPassword(confirmPassword);
         this.innerSignUpModule.clickSignUpCreateButton();
         return this;
+    }
+    public boolean isSignUpModuleDisplayed(){
+        return this.innerSignUpModule.isSignUpModuleDisplayed();
+    }
+    public boolean isSignUpEmailIsUsedErrorDisplayed(){
+        return this.innerSignUpModule.isSignUpEmailIsUsedErrorDisplayed();
     }
 
     class InnerSignInModule{
@@ -79,6 +91,7 @@ public class HeaderBarSignInModule {
         private WebElement signUpConfirmPasswordTextFieldSelector;
         private WebElement signUpCreateButtonSelector;
         private WebElement signUpSignInLinkSelector;
+        private WebElement signUpEmailIsUsedErrorSelector;
 
         public InnerSignUpModule(WebDriver driver) {
             this.driver = driver;
@@ -87,6 +100,7 @@ public class HeaderBarSignInModule {
             this.signUpConfirmPasswordTextFieldSelector =  driver.findElement(By.cssSelector(".input-password .password-conf-label"));
             this.signUpCreateButtonSelector =  driver.findElement(By.cssSelector(".button .submit"));
             this.signUpSignInLinkSelector =  driver.findElement(By.cssSelector(".sign-in"));
+            this.signUpEmailIsUsedErrorSelector =  driver.findElement(By.cssSelector(".status-messages-wrapper .error"));// how to specify text "<li class="error" style="">This email address is already in use by another user.</li>"
         }
         public void sendKeysSignUpEmail (String email) {
             logger.info("Entering SignUp Email Text Field");
@@ -105,8 +119,16 @@ public class HeaderBarSignInModule {
             signUpCreateButtonSelector.click();
         }
         public void clickSignUpSignInLink () {
-            logger.info("Clicking Sign Up Sign in Link");
+            logger.info("Clicking SignUp|SignIn Link");
             signUpSignInLinkSelector.click();
+        }
+
+        public boolean isSignUpModuleDisplayed (){
+            return this.signUpConfirmPasswordTextFieldSelector.isDisplayed();
+        }
+
+        public boolean isSignUpEmailIsUsedErrorDisplayed (){
+            return this.signUpEmailIsUsedErrorSelector.isDisplayed();
         }
 
     }

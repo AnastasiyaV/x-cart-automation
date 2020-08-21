@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.module.HeaderBarSignInModule;
 import pageobjects.module.LinksNavbarModule;
@@ -14,7 +15,7 @@ abstract class BasePageObject {
     protected WebDriver driver;
     private LinksNavbarModule linksNavbarModule;
     private HeaderBarSignInModule headerBarSignInModule;
-    private WebElement signInSelector;
+    private WebElement signInUpSelector;
     private MyAccountModule myAccountModule;
     private WebElement myAccountSelector;
     WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -22,15 +23,10 @@ abstract class BasePageObject {
     public BasePageObject(WebDriver driver) {
         this.driver = driver;
         this.linksNavbarModule =  new LinksNavbarModule(driver);
-        this.headerBarSignInModule = new HeaderBarSignInModule(driver);
-        this.myAccountModule = new MyAccountModule(driver);
-        this.signInSelector =  driver.findElement(By.cssSelector(".header_bar-sign_in button[data-without-close=\"1\"]"));
-        this.myAccountSelector =  driver.findElement(By.cssSelector(".dropdown header_bar-my_account"));
-        //this.signInSelector.isDisplayed();
-    }
-
-    public WebElement getMyAccountrSelector() {
-        return myAccountSelector;
+        //this.headerBarSignInModule = new HeaderBarSignInModule(driver);// SignInModule is not visible yet, only after click SignIN|UP button
+        //this.myAccountModule = new MyAccountModule(driver); //MyAccount selector is not visible yet, so we will create it later in clickMyAccount method
+        this.signInUpSelector =  driver.findElement(By.cssSelector(".header_bar-sign_in button[data-without-close=\"1\"]"));
+        this.myAccountSelector =  driver.findElement(By.cssSelector(".header_bar-my_account"));
     }
     public LinksNavbarModule getLinksNavbarModule() {
         return linksNavbarModule;
@@ -38,26 +34,23 @@ abstract class BasePageObject {
 
     public HeaderBarSignInModule clickSignInUpButton () {
         logger.info("Clicking on 'Sign In / sign up' button");
-        signInSelector.click();
-       // WebElement until = wait.until(ExpectedConditions.presenceOfElementLocated((By) myAccountSelector));//how to do it without casting (By)?
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        signInUpSelector.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated((By) By.cssSelector(".ui-dialog")));//create variable for locator
+        this.headerBarSignInModule = new HeaderBarSignInModule(driver);
+        return headerBarSignInModule;
+    }
+    public HeaderBarSignInModule getHeaderBarSignInModule () {
         return headerBarSignInModule;
     }
 
     public MyAccountModule clickMyAccount () {
         logger.info("Clicking on 'My account'");
         myAccountSelector.click();
-        //WebDriverWait wait =
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        wait.until(ExpectedConditions.presenceOfElementLocated((By) By.cssSelector(".account-links")));//create variable
+        this.myAccountModule = new MyAccountModule(driver);
         return myAccountModule;
     }
-
+    public MyAccountModule getMyAccountSelector() { //should it be WebElement or MyAccountModule?
+        return myAccountModule;
+    }
 }

@@ -14,10 +14,22 @@ public class SignInTest extends BaseTest {
     WebDriverWait wait = new WebDriverWait(driver, 2);
 
     @Test
-    public void SignInTest(){
+    public void verifySigningInUnderAnastasiyaWillDisplayMyAccountLink(){
         homePage.clickSignInUpButton().performSignIn("anastasiya.vynogradska@hotmail.com", "anastasiya");
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        Assert.assertTrue(homePage.getMyAccountrSelector().isDisplayed()); //DONE: signInSelector & separate module for my account
+        Assert.assertTrue(homePage.getMyAccountSelector().isMyAccountModuleDisplayed());
+    }
+    @Test
+    public void verifyClickingOnCreateNewAccountLinkWillDisplayNewAccountCreationForm(){
+        homePage.clickSignInUpButton().clickSignInCreateAccountLink();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        Assert.assertTrue(homePage.getHeaderBarSignInModule().isSignUpModuleDisplayed());
+    }
+    @Test
+    public void verifySigningUPUnderAnastasiyaWillDisplayEmailIsUsedError(){
+        homePage.clickSignInUpButton().clickSignInCreateAccountLink().performSignUp("anastasiya.vynogradska@hotmail.com", "anastasiya", "anastasiya");
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        Assert.assertTrue(homePage.clickSignInUpButton().isSignUpEmailIsUsedErrorDisplayed());
     }
 
 }
