@@ -43,6 +43,9 @@ public class HeaderBarSignInModule {
     public boolean isSignUpEmailIsUsedErrorDisplayed(){
         return this.innerSignUpModule.isSignUpEmailIsUsedErrorDisplayed();
     }
+    public boolean isSignInInvalidLoginOrPasswordErrorDisplayed(){
+        return this.innerSignUpModule.isSignInInvalidLoginOrPasswordErrorDisplayed();
+    }
 
     class InnerSignInModule{
         public WebDriver driver;
@@ -51,6 +54,7 @@ public class HeaderBarSignInModule {
         private WebElement signInsubmitButtonSelector;
         private WebElement signIncreateAccountLinkSelector;
         private WebElement signInforgotPasswordSelector;
+        private WebElement SignInInvalidLoginOrPasswordErrorSelector;
 
         public InnerSignInModule(WebDriver driver) {
             this.driver = driver;
@@ -59,6 +63,9 @@ public class HeaderBarSignInModule {
             this.signInsubmitButtonSelector =  driver.findElement(By.cssSelector(".login-form .submit"));
             this.signIncreateAccountLinkSelector =  driver.findElement(By.cssSelector(".popup-button default-popup-button create-account-link"));
             this.signInforgotPasswordSelector =  driver.findElement(By.cssSelector("popup-button default-popup-button forgot"));
+
+            //InvalidLoginOrPasswordError is not visible yet, TODO: put it later, WHERE?
+            this.SignInInvalidLoginOrPasswordErrorSelector =  driver.findElement(By.cssSelector(".form-error"));// how to specify text "<li class="error" style="">This email address is already in use by another user.</li>"
         }
 
         public void sendKeysSignInEmail (String email) {
@@ -81,6 +88,9 @@ public class HeaderBarSignInModule {
             logger.info("Clicking SignIn Forgot Password Link");
             signInforgotPasswordSelector.click();
         }
+        public boolean isSignInInvalidLoginOrPasswordErrorDisplayed (){
+            return this.SignInInvalidLoginOrPasswordErrorSelector.isDisplayed();
+        }
 
     }
 
@@ -93,6 +103,7 @@ public class HeaderBarSignInModule {
         private WebElement signUpSignInLinkSelector;
         private WebElement signUpEmailIsUsedErrorSelector;
 
+
         public InnerSignUpModule(WebDriver driver) {
             this.driver = driver;
             this.signUpEmailTextFieldSelector =  driver.findElement(By.cssSelector(".input-text-email .login-label"));
@@ -100,6 +111,8 @@ public class HeaderBarSignInModule {
             this.signUpConfirmPasswordTextFieldSelector =  driver.findElement(By.cssSelector(".input-password .password-conf-label"));
             this.signUpCreateButtonSelector =  driver.findElement(By.cssSelector(".button .submit"));
             this.signUpSignInLinkSelector =  driver.findElement(By.cssSelector(".sign-in"));
+
+            // ?? TODO: to find it later, - signUpEmailIsUsedErrorSelector is not visible here
             this.signUpEmailIsUsedErrorSelector =  driver.findElement(By.cssSelector(".status-messages-wrapper .error"));// how to specify text "<li class="error" style="">This email address is already in use by another user.</li>"
         }
         public void sendKeysSignUpEmail (String email) {

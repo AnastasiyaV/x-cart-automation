@@ -50,7 +50,7 @@ abstract class BasePageObject {
         this.myAccountModule = new MyAccountModule(driver);
         return myAccountModule;
     }
-    public MyAccountModule getMyAccountSelector() { //should it be WebElement or MyAccountModule?
+    public MyAccountModule getMyAccountSelector() {
         return myAccountModule;
     }
 }
