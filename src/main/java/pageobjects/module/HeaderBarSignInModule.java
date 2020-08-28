@@ -40,11 +40,12 @@ public class HeaderBarSignInModule {
     public boolean isSignUpModuleDisplayed(){
         return this.innerSignUpModule.isSignUpModuleDisplayed();
     }
+
     public boolean isSignUpEmailIsUsedErrorDisplayed(){
         return this.innerSignUpModule.isSignUpEmailIsUsedErrorDisplayed();
     }
     public boolean isSignInInvalidLoginOrPasswordErrorDisplayed(){
-        return this.innerSignUpModule.isSignInInvalidLoginOrPasswordErrorDisplayed();
+        return this.InnerSignInModule.isSignInInvalidLoginOrPasswordErrorDisplayed(); // что-то мозг не соображает что тут не так
     }
 
     class InnerSignInModule{
@@ -55,6 +56,7 @@ public class HeaderBarSignInModule {
         private WebElement signIncreateAccountLinkSelector;
         private WebElement signInforgotPasswordSelector;
         private WebElement SignInInvalidLoginOrPasswordErrorSelector;
+
 
         public InnerSignInModule(WebDriver driver) {
             this.driver = driver;
