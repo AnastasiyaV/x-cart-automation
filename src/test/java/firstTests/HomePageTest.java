@@ -9,6 +9,8 @@ import pageobjects.SignInSelector;
 import pageobjects.TopLinkSelector;
 import org.apache.log4j.Logger;
 
+import java.util.concurrent.TimeUnit;
+
 public class HomePageTest extends BaseTest {
 private static final Logger logger = Logger.getLogger(HomePageTest.class.getName());
 
@@ -30,10 +32,11 @@ private static final Logger logger = Logger.getLogger(HomePageTest.class.getName
         return new Object[] {TopLinkSelector.NEW, TopLinkSelector.SHIPPING, TopLinkSelector.COMMINGSOON, TopLinkSelector.CONTACTUS, TopLinkSelector.HOME};
     }
 
-
     @Test (priority = 1, description = "Verify that clicking HeaderBarSignIn will open SignIn dialog")
     public void verifyClickingHeaderBarSignInWillOpenSignInDialog (){
-        //how to assert that id="ui-id-9" is opened? assert that .gettext  = "Sign in"?
+        homePage.clickSignInUpButton();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        Assert.assertTrue(homePage.getHeaderBarSignInModule().isSignInModuleDisplayed());
     }
 
 

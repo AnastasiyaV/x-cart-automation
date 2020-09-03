@@ -37,6 +37,11 @@ public class HeaderBarSignInModule {
         this.innerSignUpModule.clickSignUpCreateButton();
         return this;
     }
+
+    public boolean isSignInModuleDisplayed(){
+        return this.innerSignInModule.isSignInModuleDisplayed();
+    }
+
     public boolean isSignUpModuleDisplayed(){
         return this.innerSignUpModule.isSignUpModuleDisplayed();
     }
@@ -45,7 +50,7 @@ public class HeaderBarSignInModule {
         return this.innerSignUpModule.isSignUpEmailIsUsedErrorDisplayed();
     }
     public boolean isSignInInvalidLoginOrPasswordErrorDisplayed(){
-        return this.InnerSignInModule.isSignInInvalidLoginOrPasswordErrorDisplayed(); // что-то мозг не соображает что тут не так
+        return this.innerSignInModule.isSignInInvalidLoginOrPasswordErrorDisplayed();
     }
 
     class InnerSignInModule{
@@ -53,7 +58,7 @@ public class HeaderBarSignInModule {
         private WebElement signInEmailTextFieldSelector;
         private WebElement signInPasswordTextFieldSelector;
         private WebElement signInsubmitButtonSelector;
-        private WebElement signIncreateAccountLinkSelector;
+        private WebElement signInCreateAccountLinkSelector;
         private WebElement signInforgotPasswordSelector;
         private WebElement SignInInvalidLoginOrPasswordErrorSelector;
 
@@ -63,10 +68,18 @@ public class HeaderBarSignInModule {
             this.signInEmailTextFieldSelector =  driver.findElement(By.id("login-email"));
             this.signInPasswordTextFieldSelector =  driver.findElement(By.id("login-password"));
             this.signInsubmitButtonSelector =  driver.findElement(By.cssSelector(".login-form .submit"));
-            this.signIncreateAccountLinkSelector =  driver.findElement(By.cssSelector(".popup-button default-popup-button create-account-link"));
-            this.signInforgotPasswordSelector =  driver.findElement(By.cssSelector("popup-button default-popup-button forgot"));
 
-            //InvalidLoginOrPasswordError is not visible yet, TODO: put it later, WHERE?
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.cssSelector(".create-account-link"));
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.cssSelector(".popup-button create-account-link"));
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.cssSelector(".popup-button.create-account-link"));
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.className("create-account-link"));
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.xpath("//*[@id=\"form-1599170924857\"]/table/tbody[1]/tr[4]/td/a[1]"));
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.xpath("//html/body/div[4]/div[2]/div/div/form/table/tbody[1]/tr[4]/td/a[1]"));
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.cssSelector("#form-1599170924857 > table > tbody:nth-child(1) > tr:nth-child(4) > td > a.popup-button.default-popup-button.create-account-link"));
+            //this.signInCreateAccountLinkSelector =  driver.findElement(By.xpath("//*[contains(@class,'create-account-link']"));
+            this.signInCreateAccountLinkSelector =  driver.findElement(By.xpath("//a[contains(.,'Create new account']"));  // todo: to figure out how to write locators!
+
+            this.signInforgotPasswordSelector =  driver.findElement(By.cssSelector(".popup-button default-popup-button forgot"));
             this.SignInInvalidLoginOrPasswordErrorSelector =  driver.findElement(By.cssSelector(".form-error"));// how to specify text "<li class="error" style="">This email address is already in use by another user.</li>"
         }
 
@@ -84,7 +97,7 @@ public class HeaderBarSignInModule {
         }
         public void clickSignInCreateAccountLink () {
             logger.info("Clicking SignIn CreateNewAccountLink");
-            signIncreateAccountLinkSelector.click();
+            signInCreateAccountLinkSelector.click();
         }
         public void clickSignInForgotPasswordLink () {
             logger.info("Clicking SignIn Forgot Password Link");
@@ -94,6 +107,9 @@ public class HeaderBarSignInModule {
             return this.SignInInvalidLoginOrPasswordErrorSelector.isDisplayed();
         }
 
+        public boolean isSignInModuleDisplayed() {
+            return this.signInCreateAccountLinkSelector.isDisplayed();
+        }
     }
 
     class InnerSignUpModule{

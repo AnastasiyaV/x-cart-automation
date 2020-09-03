@@ -18,15 +18,16 @@ abstract class BasePageObject {
     private WebElement signInUpSelector;
     private MyAccountModule myAccountModule;
     private WebElement myAccountSelector;
-    WebDriverWait wait = new WebDriverWait(driver, 5);
+    WebDriverWait wait;
 
     public BasePageObject(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 5);
         this.linksNavbarModule =  new LinksNavbarModule(driver);
         //this.headerBarSignInModule = new HeaderBarSignInModule(driver);// SignInModule is not visible yet, only after click SignIN|UP button
         //this.myAccountModule = new MyAccountModule(driver); //MyAccount selector is not visible yet, so we will create it later in clickMyAccount method
         this.signInUpSelector =  driver.findElement(By.cssSelector(".header_bar-sign_in button[data-without-close=\"1\"]"));
-        this.myAccountSelector =  driver.findElement(By.cssSelector(".header_bar-my_account"));
+        //this.myAccountSelector =  driver.findElement(By.cssSelector(".header_bar-my_account"));//where to put it???
     }
     public LinksNavbarModule getLinksNavbarModule() {
         return linksNavbarModule;
@@ -48,6 +49,7 @@ abstract class BasePageObject {
         myAccountSelector.click();
         wait.until(ExpectedConditions.presenceOfElementLocated((By) By.cssSelector(".account-links")));//create variable
         this.myAccountModule = new MyAccountModule(driver);
+        this.myAccountSelector =  driver.findElement(By.cssSelector(".header_bar-my_account"));//where to put it???
         return myAccountModule;
     }
     public MyAccountModule getMyAccountSelector() {
