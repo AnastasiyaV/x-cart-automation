@@ -19,15 +19,15 @@ abstract class BasePageObject {
     private MyAccountModule myAccountModule;
     private WebElement myAccountSelector;
     WebDriverWait wait;
+    private HeaderBarSignInModule.InnerSignInModule innerSignInModule;
 
     public BasePageObject(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 5);
         this.linksNavbarModule =  new LinksNavbarModule(driver);
-        //this.headerBarSignInModule = new HeaderBarSignInModule(driver);// SignInModule is not visible yet, only after click SignIN|UP button
-        //this.myAccountModule = new MyAccountModule(driver); //MyAccount selector is not visible yet, so we will create it later in clickMyAccount method
+        //this.headerBarSignInModule = new HeaderBarSignInModule(driver);//the selector is not visible yet, only after click SignIN|UP button
+        //this.myAccountModule = new MyAccountModule(driver); //the selector is not visible yet, so we will create it later in clickMyAccount method
         this.signInUpSelector =  driver.findElement(By.cssSelector(".header_bar-sign_in button[data-without-close=\"1\"]"));
-        //this.myAccountSelector =  driver.findElement(By.cssSelector(".header_bar-my_account"));//where to put it???
     }
     public LinksNavbarModule getLinksNavbarModule() {
         return linksNavbarModule;
@@ -37,7 +37,9 @@ abstract class BasePageObject {
         logger.info("Clicking on 'Sign In / sign up' button");
         signInUpSelector.click();
         wait.until(ExpectedConditions.presenceOfElementLocated((By) By.cssSelector(".ui-dialog")));//create variable for locator
-        this.headerBarSignInModule = new HeaderBarSignInModule(driver);
+        getHeaderBarSignInModule();
+        this.headerBarSignInModule = new HeaderBarSignInModule(driver); // Why it is not visible here?
+        this.innerSignInModule = new HeaderBarSignInModule.InnerSignInModule(driver);
         return headerBarSignInModule;
     }
     public HeaderBarSignInModule getHeaderBarSignInModule () {
@@ -49,7 +51,7 @@ abstract class BasePageObject {
         myAccountSelector.click();
         wait.until(ExpectedConditions.presenceOfElementLocated((By) By.cssSelector(".account-links")));//create variable
         this.myAccountModule = new MyAccountModule(driver);
-        this.myAccountSelector =  driver.findElement(By.cssSelector(".header_bar-my_account"));//where to put it???
+        this.myAccountSelector =  driver.findElement(By.cssSelector(".header_bar-my_account"));
         return myAccountModule;
     }
     public MyAccountModule getMyAccountSelector() {

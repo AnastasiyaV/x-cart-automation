@@ -37,6 +37,7 @@ private static final Logger logger = Logger.getLogger(HomePageTest.class.getName
         homePage.clickSignInUpButton();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         Assert.assertTrue(homePage.getHeaderBarSignInModule().isSignInModuleDisplayed());
+        //HeaderBarSignInModule headerBarSignInModule = new HeaderBarSignInModule;
     }
 
 

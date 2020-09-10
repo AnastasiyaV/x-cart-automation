@@ -4,29 +4,34 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Instant;
 
 public class HeaderBarSignInModule {
     private WebDriver driver;
     private static final Logger logger = Logger.getLogger(HeaderBarSignInModule.class.getName());
     private InnerSignInModule innerSignInModule;
     private InnerSignUpModule innerSignUpModule;
+    WebDriverWait wait;
 
     public HeaderBarSignInModule(WebDriver driver) {
         this.driver = driver;
     }
 
     public void openSignUpForm(){} //add one more method perform signUp
+    public HeaderBarSignInModule initializationOfInnerSignInModule (){
+        wait.until(ExpectedConditions.presenceOfElementLocated((By) this.innerSignInModule.signInEmailTextFieldSelector));//what should be waited here for?
+        this.innerSignInModule = new InnerSignInModule;
+    }
 
     public HeaderBarSignInModule performSignIn(String email, String password){
-        this.innerSignInModule = new InnerSignInModule(driver);
+        //this.innerSignInModule = new InnerSignInModule(driver);//is not visible here
+        wait.until(ExpectedConditions.presenceOfElementLocated((By) this.innerSignInModule.signInEmailTextFieldSelector));
         this.innerSignInModule.sendKeysSignInEmail(email);
         this.innerSignInModule.sendKeysSignInPassword(password);
         this.innerSignInModule.clickSignInSubmitButton();
-        return this;
-    }
-    public HeaderBarSignInModule clickSignInCreateAccountLink (){
-        this.innerSignInModule = new InnerSignInModule(driver);
-        this.innerSignInModule.clickSignInCreateAccountLink();
         return this;
     }
     public HeaderBarSignInModule performSignUp (String email, String password, String confirmPassword){
@@ -35,6 +40,11 @@ public class HeaderBarSignInModule {
         this.innerSignUpModule.sendKeysSignUpPassword(password);
         this.innerSignUpModule.sendKeysSignUpConfirmPassword(confirmPassword);
         this.innerSignUpModule.clickSignUpCreateButton();
+        return this;
+    }
+    public HeaderBarSignInModule clickSignInCreateAccountLink (){
+        //this.innerSignInModule = new InnerSignInModule(driver); //?delete from here?
+        this.innerSignInModule.clickSignInCreateAccountLink();
         return this;
     }
 

@@ -43,6 +43,7 @@ abstract class BaseTest {
         /*public static boolean isloadComplete(WebDriver driver)
         {*/
         homePage = new HomePageObject(driver);
+
     }
 
     @AfterSuite
