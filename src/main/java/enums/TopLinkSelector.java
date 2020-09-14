@@ -1,4 +1,4 @@
-package pageobjects;
+package enums;
 
 public enum TopLinkSelector {
     HOME (" "),
@@ -9,7 +9,7 @@ public enum TopLinkSelector {
     CONTACTUS ("contact-us/"),
     FASHION ("fashion/");
 
-    private String url;
+    private final String url;
 
     TopLinkSelector(String url){
         this.url = url;
@@ -22,6 +22,4 @@ public enum TopLinkSelector {
     public String getCssSelectorSuffix(){
         return this.url;
     }
-
-
 }

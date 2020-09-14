@@ -1,9 +1,7 @@
 package pageobjects.module;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pageobjects.SignInSelector;
-import pageobjects.TopLinkSelector;
+
 @Deprecated
 public class SignInModule {
     public WebDriver driver;

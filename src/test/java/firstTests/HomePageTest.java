@@ -5,8 +5,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pageobjects.SignInSelector;
-import pageobjects.TopLinkSelector;
+import enums.TopLinkSelector;
 import org.apache.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;

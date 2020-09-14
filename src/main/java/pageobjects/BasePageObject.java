@@ -19,7 +19,6 @@ abstract class BasePageObject {
     private MyAccountModule myAccountModule;
     private WebElement myAccountSelector;
     WebDriverWait wait;
-    private HeaderBarSignInModule.InnerSignInModule innerSignInModule;
 
     public BasePageObject(WebDriver driver) {
         this.driver = driver;
@@ -39,7 +38,6 @@ abstract class BasePageObject {
         wait.until(ExpectedConditions.presenceOfElementLocated((By) By.cssSelector(".ui-dialog")));//create variable for locator
         getHeaderBarSignInModule();
         this.headerBarSignInModule = new HeaderBarSignInModule(driver); // Why it is not visible here?
-        this.innerSignInModule = new HeaderBarSignInModule.InnerSignInModule(driver);
         return headerBarSignInModule;
     }
     public HeaderBarSignInModule getHeaderBarSignInModule () {

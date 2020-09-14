@@ -21,10 +21,7 @@ public class HeaderBarSignInModule {
     }
 
     public void openSignUpForm(){} //add one more method perform signUp
-    public HeaderBarSignInModule initializationOfInnerSignInModule (){
-        wait.until(ExpectedConditions.presenceOfElementLocated((By) this.innerSignInModule.signInEmailTextFieldSelector));//what should be waited here for?
-        this.innerSignInModule = new InnerSignInModule;
-    }
+
 
     public HeaderBarSignInModule performSignIn(String email, String password){
         //this.innerSignInModule = new InnerSignInModule(driver);//is not visible here
