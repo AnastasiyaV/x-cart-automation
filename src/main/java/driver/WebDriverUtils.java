@@ -60,7 +60,7 @@ public class WebDriverUtils {
      * @param driver - initialized WebDriver instance;
      * @return {WebDriverWait}
      */
-    public static WebDriverWait getWebDriverWait(WebDriver driver) {
+    public static WebDriverWait initWebDriverWait(WebDriver driver) {
         logger.info("Initialization of WebDriver Wait utils...");
         try {
             wait = new WebDriverWait(driver, 20);

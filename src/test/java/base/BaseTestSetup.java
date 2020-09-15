@@ -30,7 +30,7 @@ public abstract class BaseTestSetup {
         navigate = new WebDriverNavigation(driver);
         navigate.toHomePage();
 
-        wait = WebDriverUtils.getWebDriverWait(driver);
+        wait = WebDriverUtils.initWebDriverWait(driver);
         wait.until(driver -> ((JavascriptExecutor) driver)
                 .executeScript("return document.readyState").equals("complete"));
 
