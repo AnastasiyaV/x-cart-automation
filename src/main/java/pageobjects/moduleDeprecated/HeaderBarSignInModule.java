@@ -1,4 +1,4 @@
-package pageobjects.module;
+package pageobjects.moduleDeprecated;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -7,8 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Instant;
-
+@Deprecated
 public class HeaderBarSignInModule {
     private WebDriver driver;
     private static final Logger logger = Logger.getLogger(HeaderBarSignInModule.class.getName());

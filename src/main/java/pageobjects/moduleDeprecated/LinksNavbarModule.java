@@ -1,9 +1,10 @@
-package pageobjects.module;
+package pageobjects.moduleDeprecated;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import enums.TopLinkSelector;
 
+@Deprecated
 public class LinksNavbarModule {
     public WebDriver driver;
     private static final Logger logger = Logger.getLogger(LinksNavbarModule.class.getName());

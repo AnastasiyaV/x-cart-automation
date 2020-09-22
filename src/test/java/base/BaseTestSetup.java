@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeSuite;
 import source.pageobject.HomePage;
 import utils.TestUtils;
 
+
 public abstract class BaseTestSetup {
     private static final Logger logger = Logger.getLogger(BaseTestSetup.class.getName());
 
@@ -24,7 +25,7 @@ public abstract class BaseTestSetup {
     @BeforeSuite
     public void setUp() {
         logger.info("Starting to initialize all Tests components...");
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/Users/admin/Drivers/chromedriver");
         driver = WebDriverUtils.initWebDriver();
 
         navigate = new WebDriverNavigation(driver);
@@ -40,7 +41,7 @@ public abstract class BaseTestSetup {
 
     @AfterSuite
     public void tearDown() {
-        WebDriverUtils.closeWebDriver();
-        WebDriverUtils.quitWebDriver();
+        WebDriverUtils.closeWebDriver(); //closes the tab
+        WebDriverUtils.quitWebDriver(); //closes all windows
     }
 }

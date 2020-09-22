@@ -1,10 +1,11 @@
-package pageobjects.module;
+package pageobjects.moduleDeprecated;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+@Deprecated
 public class MyAccountModule {
     private WebDriver driver;
     private WebElement parentAccountLinks;

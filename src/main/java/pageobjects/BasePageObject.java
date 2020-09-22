@@ -6,9 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobjects.module.HeaderBarSignInModule;
-import pageobjects.module.LinksNavbarModule;
-import pageobjects.module.MyAccountModule;
+import pageobjects.moduleDeprecated.HeaderBarSignInModule;
+import pageobjects.moduleDeprecated.LinksNavbarModule;
+import pageobjects.moduleDeprecated.MyAccountModule;
 
 abstract class BasePageObject {
     private static final Logger logger = Logger.getLogger(BasePageObject.class.getName());

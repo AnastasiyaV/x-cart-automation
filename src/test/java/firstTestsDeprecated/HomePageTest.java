@@ -1,4 +1,4 @@
-package firstTests;
+package firstTestsDeprecated;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -7,9 +7,9 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import enums.TopLinkSelector;
 import org.apache.log4j.Logger;
-
 import java.util.concurrent.TimeUnit;
 
+@Deprecated
 public class HomePageTest extends BaseTest {
 private static final Logger logger = Logger.getLogger(HomePageTest.class.getName());
 
