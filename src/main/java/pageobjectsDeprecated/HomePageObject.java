@@ -1,6 +1,7 @@
-package pageobjects;
+package pageobjectsDeprecated;
 import org.openqa.selenium.WebDriver;
 
+@Deprecated
 public class HomePageObject extends BasePageObject {
     public HomePageObject(WebDriver driver) {
         super(driver);

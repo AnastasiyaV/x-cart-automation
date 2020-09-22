@@ -1,4 +1,4 @@
-package pageobjects;
+package pageobjectsDeprecated;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -6,10 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobjects.moduleDeprecated.HeaderBarSignInModule;
-import pageobjects.moduleDeprecated.LinksNavbarModule;
-import pageobjects.moduleDeprecated.MyAccountModule;
+import pageobjectsDeprecated.moduleDeprecated.HeaderBarSignInModule;
+import pageobjectsDeprecated.moduleDeprecated.LinksNavbarModule;
+import pageobjectsDeprecated.moduleDeprecated.MyAccountModule;
 
+@Deprecated
 abstract class BasePageObject {
     private static final Logger logger = Logger.getLogger(BasePageObject.class.getName());
     protected WebDriver driver;
