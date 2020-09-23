@@ -1,11 +1,12 @@
 package enums;
 
 public enum Urls {
-    HOME("https://taauto.myxcartstore.com/");
+    HOME(""),
+    COMMING_SOON("coming-soon/");
 
-    private String url;
+    private final String url;
     public String getUrl() {
-        return url;
+        return String.format("https://taauto.myxcartstore.com/%s", url);
     }
 
     Urls(String url) {
