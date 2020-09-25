@@ -1,4 +1,4 @@
-package pageobjectsDeprecated.moduleDeprecated;
+package zpageobjectsDeprecated.moduleDeprecated;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

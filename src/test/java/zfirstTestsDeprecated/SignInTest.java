@@ -1,4 +1,4 @@
-package firstTestsDeprecated;
+package zfirstTestsDeprecated;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;

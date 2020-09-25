@@ -1,4 +1,4 @@
-package pageobjectsDeprecated;
+package zpageobjectsDeprecated;
 import org.openqa.selenium.WebDriver;
 
 @Deprecated

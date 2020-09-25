@@ -1,4 +1,4 @@
-package firstTestsDeprecated;
+package zfirstTestsDeprecated;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;

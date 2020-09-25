@@ -1,11 +1,11 @@
-package firstTestsDeprecated;
+package zfirstTestsDeprecated;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import pageobjectsDeprecated.HomePageObject;
+import zpageobjectsDeprecated.HomePageObject;
 
 import java.util.concurrent.TimeUnit;
 
