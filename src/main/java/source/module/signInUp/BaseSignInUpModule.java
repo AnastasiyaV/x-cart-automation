@@ -10,7 +10,8 @@ public abstract class BaseSignInUpModule {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    private final By signInModuleRootElement = By.cssSelector(".ui-dialog");
+    //private final By signInModuleRootElement = By.cssSelector(".ui-dialog");
+    //private final By signInModuleRootElement = By.xpath("//div[@class='header_bar-sign_in']/button[@class='btn  regular-button  popup-button popup-login' and @type='button']");
     private final By createAccountLinkElement = By.cssSelector(".create-account-link");
 
 
@@ -20,7 +21,7 @@ public abstract class BaseSignInUpModule {
     }
 
     public boolean isSignInUpModuleDisplayed() {
-        this.wait.until(ExpectedConditions.presenceOfElementLocated((By) signInModuleRootElement));
+        //this .wait.until(ExpectedConditions.presenceOfElementLocated((By) signInModuleRootElement));
         this.wait.until(ExpectedConditions.presenceOfElementLocated((By) createAccountLinkElement));
         return this.driver.findElement(createAccountLinkElement).isDisplayed();
     }

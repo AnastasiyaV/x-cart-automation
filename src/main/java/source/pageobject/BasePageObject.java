@@ -21,6 +21,7 @@ public abstract class BasePageObject {
     private final HeaderModule headerModule;
     
     public HeaderModule getHeaderModule() {
+        wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//div[@class='header_bar-sign_in']/button[@class='btn  regular-button  popup-button popup-login' and @type='button']"))));
         return this.headerModule;
     }
 
